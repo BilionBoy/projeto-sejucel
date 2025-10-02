@@ -1,5 +1,15 @@
 module ApplicationHelper
   include Pagy::Frontend
+  
+
+
+  def format_cpf(cpf)
+    return "" if cpf.blank?
+    numbers = cpf.to_s.gsub(/\D/, "") # mantém só números
+    return cpf if numbers.length != 11
+
+    numbers.gsub(/(\d{3})(\d{3})(\d{3})(\d{2})/, "\\1.\\2.\\3-\\4")
+  end
 
   def btn_submit(form)
     text = form.object.new_record? ? 'Incluir' : 'Atualizar'

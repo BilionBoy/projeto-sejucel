@@ -30,8 +30,8 @@
           <%= f.input :nome, input_html: { class: "modern-form-control capitalize" }, label_html: { class: "modern-form-label" },  placeholder: "Nome", wrapper_html: { class: "modern-form-group" } %>
         </div>
         <div class="modern-form-group">
-          <%= f.input :cpf,   input_html: { class: "modern-form-control capitalize" }, label_html: { class: "modern-form-label" }, placeholder: "CPF", wrapper_html: { class: "modern-form-group" } %>
-        </div>
+            <%= f.input :cpf, label: "CPF", required: true, input_html: { maxlength: 11, placeholder: "Somente números", class: "form-control" } %>
+         </div>
         <div class="modern-form-group">
           <%= f.input :codigo_qr,    input_html: { class: "modern-form-control capitalize" },   label_html: { class: "modern-form-label" }, placeholder: "Código QR", wrapper_html: { class: "modern-form-group" } %>
         </div>
