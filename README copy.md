@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# MenuxT
-Saas para cardápio digital.
-=======
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -26,4 +22,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
->>>>>>> 7e4262e (WIP)

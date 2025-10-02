@@ -1,4 +1,4 @@
-<div class="navbar navbar-dark navbar-expand-xl navbar-static" style="background: #005171;">
+<div class="navbar navbar-dark navbar-expand-xl navbar-static" style="background: #095394 ;">
   <div class="container-fluid">
     <div class="d-flex d-xl-none me-2">
       <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
@@ -7,22 +7,21 @@
     </div>
     <div class="navbar-brand flex-0 flex-sm-1 py-0">
       <%= link_to root_path, class: 'd-flex align-items-center text-decoration-none text-white gap-2' do %>
-        <img src="/layout/assets/img/Team.png" style="height: 65px">
-        <img src="/layout/assets/img/template.png" style="height: 55px">
+        <img src="/layout/assets/img/logo.png" style="height: 55px">
+        <img src="/layout/assets/img/SETIC.png" style="height: 45px">
       <% end %>
     </div>
     <ul class="nav flex-row justify-content-end order-1 order-lg-2">
       <li class="nav-item nav-item-dropdown-lg ms-lg-2">
         <a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" id="userMenuToggle">
           <div class="status-indicator-container">
-            <i class="ph-user-circle"></i>
+            <i class="ph-user-gear"></i>
           </div>
           <span class="d-none d-xl-inline-block mx-lg-2">
-            <h4>Olá, Dhiogo </h4>
           </span>
         </a>
         <div id="userMenu" class="custom-dropdown-menu">
-          <%= button_to '<i class="ph-sign-out me-2"></i>Sair'.html_safe,  class: "btn btn-logout"   %>
+          <%= button_to '<i class="ph-door me-2"></i>Sair'.html_safe, class: "btn btn-logout" %>
         </div>
       </li>
     </ul>

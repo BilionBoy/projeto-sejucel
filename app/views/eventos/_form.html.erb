@@ -1,8 +1,8 @@
-<%# frozen_string_literal: true %>
-<%%= render "shared/context_nav", title: t("activerecord.models.#{<%= class_name %>.model_name.i18n_key}.other") do  %>
-  <span class="breadcrumb-item"><%%= link_to t("activerecord.models.#{<%= class_name %>.model_name.i18n_key}.other"), <%= plural_table_name %>_path, class: "text-dark" %></span>
-  <span class="breadcrumb-item active"><%%= t("helpers.submit.#{params[:action]}") %></span>
-<%% end %>
+
+<%= render "shared/context_nav", title: t("activerecord.models.#{Evento.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{Evento.model_name.i18n_key}.other"), eventos_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
 
 <style>
   /* Modern Form Card */
@@ -209,48 +209,64 @@
   }
 </style>
 
-<%%= simple_form_for(@<%= singular_table_name %>) do |f| %>
+<%= simple_form_for(@evento) do |f| %>
   <div class="modern-form-card">
     <div class="modern-form-header">
       <h5>
-        <%%= @<%= singular_table_name %>.new_record? ? "Incluir " : "Editar " %><%%= t("activerecord.models.#{<%= class_name %>.model_name.i18n_key}.one") %>
+        <%= @evento.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{Evento.model_name.i18n_key}.one") %>
       </h5>
     </div>
 
     <div class="modern-form-body">
-      <%% if f.error_notification %>
+      <% if f.error_notification %>
         <div class="modern-error-notification">
           <strong>Atenção!</strong>
-          <%%= f.error_notification %>
+          <%= f.error_notification %>
         </div>
-      <%% end %>
+      <% end %>
 
-      <%% if f.object.errors[:base].present? %>
+      <% if f.object.errors[:base].present? %>
         <div class="modern-error-notification">
           <strong>Erro:</strong>
-          <%%= f.object.errors[:base].to_sentence %>
+          <%= f.object.errors[:base].to_sentence %>
         </div>
-      <%% end %>
+      <% end %>
 
       <div class="modern-form-row">
-        <% attributes_to_ignore = ['deleted_at', 'original_user_create', 'last_user_update', 'created_by', 'updated_by'] %>
-        <%- attributes.each do |attribute| -%>
-          <% unless attributes_to_ignore.include?(attribute.name) %>
+        
+          
             <div class="modern-form-group">
-              <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, 
+              <%= f.input :descricao, 
                 input_html: { class: "modern-form-control capitalize" }, 
                 label_html: { class: "modern-form-label" },
-                placeholder: "<%= attribute.name.humanize %>",
+                placeholder: "Descricao",
                 wrapper_html: { class: "modern-form-group" } %>
             </div>
-          <% end %>
-        <%- end -%>
+          
+          
+            <div class="modern-form-group">
+              <%= f.input :data_inicio, 
+                input_html: { class: "modern-form-control capitalize" }, 
+                label_html: { class: "modern-form-label" },
+                placeholder: "Data inicio",
+                wrapper_html: { class: "modern-form-group" } %>
+            </div>
+          
+          
+            <div class="modern-form-group">
+              <%= f.input :data_fim, 
+                input_html: { class: "modern-form-control capitalize" }, 
+                label_html: { class: "modern-form-label" },
+                placeholder: "Data fim",
+                wrapper_html: { class: "modern-form-group" } %>
+            </div>
+          
       </div>
     </div>
 
     <div class="modern-form-footer">
-      <%%= link_to "Cancelar", <%= plural_table_name %>_path, class: "modern-btn modern-btn-secondary" %>
-      <%%= f.button :submit, "Salvar", class: "modern-btn modern-btn-primary" %>
+      <%= link_to "Cancelar", eventos_path, class: "modern-btn modern-btn-secondary" %>
+      <%= f.button :submit, "Salvar", class: "modern-btn modern-btn-primary" %>
     </div>
   </div>
-<%% end %>
+<% end %>

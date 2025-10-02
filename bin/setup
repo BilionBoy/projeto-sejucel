@@ -2,7 +2,7 @@
 require "fileutils"
 
 APP_ROOT = File.expand_path("..", __dir__)
-APP_NAME = "menux-t"
+APP_NAME = "projeto-sejus"
 
 def system!(*args)
   system(*args, exception: true)
