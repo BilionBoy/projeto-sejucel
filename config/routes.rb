@@ -7,7 +7,15 @@ Rails.application.routes.draw do
   resources :modalidades
   resources :eventos
   resources :tipos
-  resources :participantes
+  resources :participantes do
+   member do
+     get :qr_code
+   end
+   collection do
+     get :qr_codes_pdf
+   end
+  end
+ 
 
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check

@@ -1,76 +1,90 @@
 <%= render "shared/context_nav", title: t("activerecord.models.#{Participante.model_name.i18n_key}.other"), new_path: new_participante_path do  %>
-<span class="breadcrumb-item active"><%= t("activerecord.models.#{Participante.model_name.i18n_key}.other") %></span>
+  <span class="breadcrumb-item active">
+    <%= t("activerecord.models.#{Participante.model_name.i18n_key}.other") %>
+  </span>
 <% end %>
+
 <div class="modern-card">
   <div class="modern-card-header">
     <%= search_form_for @q, html: { class: "modern-search-form", autocomplete: "off" } do |f| %>
       <%= f.search_field :nome_cont, class: "modern-search-input", placeholder: "Pesquisar..." %>
       <%= f.button(type: 'submit', class: 'modern-btn modern-btn-primary modern-btn-icon') { tag.i(class: 'ph-magnifying-glass') } %>
       <% if params[:q] %>
-      <%= link_to tag.i(class: 'ph-x-circle'), participantes_path, class: "modern-btn modern-btn-secondary modern-btn-icon" %>
+        <%= link_to tag.i(class: 'ph-x-circle'), participantes_path, class: "modern-btn modern-btn-secondary modern-btn-icon" %>
       <% end %>
-      <% end %>
-    </div>
-    <div class="modern-card-body">
-      <% if @participantes.any? %>
+    <% end %>
+  </div>
+
+  <div class="modern-card-body">
+    <% if @participantes.any? %>
       <div class="modern-table-container">
         <table class="modern-table">
           <thead>
             <tr>
               <th style="width: 80px; text-align: center;">Ações</th>
-                  <th><%= sort_link(@q, :nome, t("activerecord.attributes.participante.nome")) %></th>
-                  <th><%= sort_link(@q, :cpf, t("activerecord.attributes.participante.cpf")) %></th>
-                  <th><%= sort_link(@q, :codigo_qr, t("activerecord.attributes.participante.codigo_qr")) %></th>
-                  <th><%= sort_link(@q, :modalidade, t("activerecord.attributes.participante.modalidade")) %></th>
-                  <th><%= sort_link(@q, :municipio, t("activerecord.attributes.participante.municipio")) %></th>
-                
+              <th><%= sort_link(@q, :nome, t("activerecord.attributes.participante.nome")) %></th>
+              <th><%= sort_link(@q, :cpf, t("activerecord.attributes.participante.cpf")) %></th>
+              <th><%= sort_link(@q, :modalidade, t("activerecord.attributes.participante.modalidade")) %></th>
+              <th><%= sort_link(@q, :municipio, t("activerecord.attributes.participante.municipio")) %></th>
+              <th>QR Code</th>
             </tr>
           </thead>
           <tbody>
             <% @participantes.each do |participante| %>
-            <tr>
-              <td style="text-align: center;">
-                <div class="modern-dropdown">
-                  <a href="#" class="modern-dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="ph-gear"></i>
-                  </a>
-                  <div class="dropdown-menu modern-dropdown-menu">
-                    <div class="modern-dropdown-header">Opções</div>
-                    <%= link_to edit_participante_path(participante), class: "modern-dropdown-item" do %>
-                    <i class="ph-pen"></i> Editar
-                    <% end %>
-                    <%= form_for participante, method: :delete do |f| %>
-                    <a class="modern-dropdown-item hand-pointer" data-confirm-delete="<%= participante_path(participante) %>" data-csrf-token="<%= form_authenticity_token %>">
-                      <i class="ph-trash-simple"></i> Excluir
+              <tr>
+                <td style="text-align: center;">
+                  <div class="modern-dropdown">
+                    <a href="#" class="modern-dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="ph-gear"></i>
                     </a>
-                    <% end %>
+                    <div class="dropdown-menu modern-dropdown-menu">
+                      <div class="modern-dropdown-header">Opções</div>
+                      
+                      <%= link_to edit_participante_path(participante), class: "modern-dropdown-item" do %>
+                        <i class="ph-pen"></i> Editar
+                      <% end %>
+
+                      <%= link_to qr_code_participante_path(participante), target: "_blank", class: "modern-dropdown-item" do %>
+                        <i class="ph-qrcode"></i> Ver QR
+                      <% end %>
+
+                      <%= form_for participante, method: :delete do |f| %>
+                        <a class="modern-dropdown-item hand-pointer" data-confirm-delete="<%= participante_path(participante) %>" data-csrf-token="<%= form_authenticity_token %>">
+                          <i class="ph-trash-simple"></i> Excluir
+                        </a>
+                      <% end %>
+                    </div>
                   </div>
-                </div>
-              </td>
-                  <td><%= participante.nome %></td>
-                  <td><%= participante.cpf %></td>
-                  <td><%= participante.codigo_qr %></td>
-                  <td><%= participante.modalidade&.descricao %></td>
-                  <td><%= participante.municipio&.descricao %></td>
-                
-            </tr>
+                </td>
+                <td><%= participante.nome %></td>
+                <td><%= participante.cpf %></td>
+                <td><%= participante.modalidade&.descricao %></td>
+                <td><%= participante.municipio&.descricao %></td>
+                <td>
+    <%= link_to qr_code_participante_path(participante), target: "_blank", class: "modern-btn modern-btn-secondary" do %>
+  <i class="ph ph-qr-code"></i> Ver QR
+<% end %>
+
+                </td>
+              </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-      <% else %>
+    <% else %>
       <div class="modern-empty-state">
         <i class="ph-folder-open"></i>
         <h3>Nenhum registro encontrado</h3>
         <p>Comece criando um novo registro</p>
       </div>
-      <% end %>
-    </div>
-    <% if @participantes.any? %>
+    <% end %>
+  </div>
+
+  <% if @participantes.any? %>
     <div class="modern-card-footer">
       <div class="modern-pagination">
         <%= pagy_bootstrap_nav(@pagy, link_extra: 'class="btn"').html_safe %>
       </div>
     </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>

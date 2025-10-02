@@ -49,3 +49,4 @@ namespace :import do
     puts "🎉 Importação concluída. Total de participantes importados: #{participantes.size}"
   end
 end
+

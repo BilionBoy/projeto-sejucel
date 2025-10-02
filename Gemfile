@@ -83,6 +83,7 @@ gem 'cpf_cnpj'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
+
 # LEITURA PLANILHA
 
 gem 'roo'
@@ -97,6 +98,16 @@ gem 'cancancan'
 
 # Soft deleted_at
 gem 'paranoia'
+
+# gems QR CODE
+gem "rqrcode"
+gem "rqrcode_png"   # se quiser usar PNG
+gem "chunky_png"
+
+# Geração em lote
+gem "prawn"
+
+
 
 # Imagens
 gem 'image_processing', '>= 1.2'
