@@ -1,12 +1,12 @@
-<%= render "shared/context_nav", title: t("activerecord.models.#{Modalidade.model_name.i18n_key}.other") do  %>
-  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{Modalidade.model_name.i18n_key}.other"), modalidades_path, class: "text-dark" %></span>
+<%= render "shared/context_nav", title: t("activerecord.models.#{Municipio.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{Municipio.model_name.i18n_key}.other"), municipios_path, class: "text-dark" %></span>
   <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
 <% end %>
-<%= simple_form_for(@modalidade) do |f| %>
+<%= simple_form_for(@municipio) do |f| %>
   <div class="modern-form-card">
     <div class="modern-form-header">
       <h5>
-        <%= @modalidade.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{Modalidade.model_name.i18n_key}.one") %>
+        <%= @municipio.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{Municipio.model_name.i18n_key}.one") %>
       </h5>
     </div>
     <div class="modern-form-body">
@@ -23,13 +23,17 @@
         </div>
       <% end %>
       <div class="modern-form-row">
-        <div class="modern-form-group ">
-          <%= f.input :descricao, input_html: { class: "modern-form-control capitalize" }, label_html: { class: "modern-form-label" },placeholder: "Descricao",wrapper_html: { class: "modern-form-group" } %>
+        <div class="modern-form-group">
+          <%= f.input :descricao, 
+                input_html: { class: "modern-form-control capitalize" }, 
+                label_html: { class: "modern-form-label" },
+                placeholder: "Descricao",
+                wrapper_html: { class: "modern-form-group" } %>
         </div>
       </div>
     </div>
     <div class="modern-form-footer">
-      <%= link_to "Cancelar", modalidades_path, class: "modern-btn modern-btn-secondary" %>
+      <%= link_to "Cancelar", municipios_path, class: "modern-btn modern-btn-secondary" %>
       <%= f.button :submit, "Salvar", class: "modern-btn modern-btn-primary" %>
     </div>
   </div>

@@ -17,10 +17,15 @@ pt-BR:
       modalidade:
         one: "Modalidade"
         other: "Modalidades"
+      municipio:
+        one: "Municipios"
+        other: "Municipios"
     attributes:
       evento:
         descricao: "Descrição"
       modalidade:
+        descricao: "Descrição"
+      municipio:
         descricao: "Descrição"
 
     errors:

@@ -181,7 +181,6 @@
   }
 </style>
 
-
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-xl">
   <div class="sidebar-content">
     <div class="sidebar-section-body mt-3">
@@ -199,58 +198,70 @@
       </div>
     </div>
 
-   <div class="sidebar-section">
-  <ul class="nav nav-sidebar" data-nav-type="accordion" id="sidebar-items">
-    <li class="nav-item">
-      <a href="<%= root_path %>" class="nav-link" id="home-link" data-no-close>
-        <i class="ph-house"></i>
-        <span>Home</span>
-      </a>
-    </li>
+    <div class="sidebar-section">
+      <ul class="nav nav-sidebar" data-nav-type="accordion" id="sidebar-items">
+        <li class="nav-item">
+          <a href="<%= root_path %>" class="nav-link" id="home-link" data-no-close>
+            <i class="ph-house"></i>
+            <span>Home</span>
+          </a>
+        </li>
 
-    <!-- Seção Eventos -->
-    <div class="sidebar-section-header">
-      <h6>Eventos</h6>
+        <!-- Seção Eventos -->
+        <div class="sidebar-section-header">
+          <h6>Eventos</h6>
+        </div>
+        <li class="nav-item">
+          <a href="<%= eventos_path %>" class="nav-link">
+            <i class="ph-calendar"></i>
+            <span>Lista de Eventos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%= new_evento_path %>" class="nav-link">
+            <i class="ph-plus-circle"></i>
+            <span>Novo Evento</span>
+          </a>
+        </li>
+
+        <!-- Seção Modalidades -->
+        <div class="sidebar-section-header">
+          <h6>Modalidades</h6>
+        </div>
+        <li class="nav-item">
+          <a href="<%= modalidades_path %>" class="nav-link">
+            <i class="ph-list"></i>
+            <span>Lista de Modalidades</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%= new_modalidade_path %>" class="nav-link">
+            <i class="ph-plus-circle"></i>
+            <span>Nova Modalidade</span>
+          </a>
+        </li>
+
+        <!-- Seção Municípios -->
+        <div class="sidebar-section-header">
+          <h6>Municípios</h6>
+        </div>
+        <li class="nav-item">
+          <a href="<%= municipios_path %>" class="nav-link">
+            <i class="ph-map-pin"></i>
+            <span>Lista de Municípios</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%= new_municipio_path %>" class="nav-link">
+            <i class="ph-plus-circle"></i>
+            <span>Novo Município</span>
+          </a>
+        </li>
+      </ul>
     </div>
-
-    <li class="nav-item">
-      <a href="<%= eventos_path %>" class="nav-link">
-        <i class="ph-calendar"></i>
-        <span>Lista de Eventos</span>
-      </a>
-    </li>
-
-    <li class="nav-item">
-      <a href="<%= new_evento_path %>" class="nav-link">
-        <i class="ph-plus-circle"></i>
-        <span>Novo Evento</span>
-      </a>
-    </li>
-
-    <!-- Seção Modalidades -->
-<div class="sidebar-section-header">
-  <h6>Modalidades</h6>
-</div>
-
-<li class="nav-item">
-  <a href="<%= modalidades_path %>" class="nav-link">
-    <i class="ph-list"></i>
-    <span>Lista de Modalidades</span>
-  </a>
-</li>
-
-<li class="nav-item">
-  <a href="<%= new_modalidade_path %>" class="nav-link">
-    <i class="ph-plus-circle"></i>
-    <span>Nova Modalidade</span>
-  </a>
-</li>
-
-  </ul>
-</div>
-
   </div>
 </div>
+
 
 <script>
   function filterSidebar() {
