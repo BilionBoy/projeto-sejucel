@@ -14,9 +14,15 @@ pt-BR:
       evento:
         one: "Eventos"
         other: "Eventos"
+      modalidade:
+        one: "Modalidade"
+        other: "Modalidades"
     attributes:
       evento:
         descricao: "Descrição"
+      modalidade:
+        descricao: "Descrição"
+
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"

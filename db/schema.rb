@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_02_035302) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_02_041007) do
   create_table "eventos", force: :cascade do |t|
     t.string "descricao"
     t.date "data_inicio"
     t.date "data_fim"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "modalidades", force: :cascade do |t|
+    t.string "descricao"
     t.string "created_by"
     t.string "updated_by"
     t.datetime "deleted_at"
