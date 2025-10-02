@@ -217,6 +217,33 @@
             <span>Lista de Eventos</span>
           </a>
         </li>
+<li class="nav-item">
+  <a href="<%= scan_test_path %>" class="nav-link">
+    <i class="ph-qr-code"></i>
+    <span>Scanner (Teste)</span>
+  </a>
+</li>
+        <!-- Seção Registros (Ações) -->
+        <div class="sidebar-section-header">
+          <h6>Registros do Evento</h6>
+        </div>
+        <li class="nav-item">
+          <a href="<%= acoes_path %>" class="nav-link">
+            <i class="ph-clipboard-text"></i>
+            <span>Lista de Registros</span>
+          </a>
+        </li>
+       
+       <!-- Seção Participantes -->
+        <div class="sidebar-section-header">
+          <h6>Participantes</h6>
+        </div>
+        <li class="nav-item">
+          <a href="<%= participantes_path %>" class="nav-link">
+            <i class="ph-users"></i>
+            <span>Participantes</span>
+          </a>
+        </li>
 
         <!-- Seção Modalidades -->
         <div class="sidebar-section-header">
@@ -228,7 +255,6 @@
             <span>Lista de Modalidades</span>
           </a>
         </li>
-       
 
         <!-- Seção Tipos de Modalidades -->
         <div class="sidebar-section-header">
@@ -236,11 +262,10 @@
         </div>
         <li class="nav-item">
           <a href="<%= tipos_path %>" class="nav-link">
-             <i class="ph-squares-four"></i>
-            <span>Lista de Tipos </span>
+            <i class="ph-squares-four"></i>
+            <span>Lista de Tipos</span>
           </a>
         </li>
-     
 
         <!-- Seção Municípios -->
         <div class="sidebar-section-header">
@@ -252,24 +277,12 @@
             <span>Lista de Municípios</span>
           </a>
         </li>
+
        
-
-       <!-- Seção Participantes -->
-     <div class="sidebar-section-header">
-       <h6>Participantes</h6>
-      </div>
-     <li class="nav-item">
-      <a href="<%= participantes_path %>" class="nav-link">
-        <i class="ph-users"></i>
-        <span>Lista de Participantes</span>
-      </a>
-     </li>
-
       </ul>
     </div>
   </div>
 </div>
-
 
 
 <script>

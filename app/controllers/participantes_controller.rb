@@ -42,6 +42,19 @@ class ParticipantesController < ApplicationController
     end   
   end
 
+  def search
+    query = params[:q].to_s.strip
+
+    participantes = if query.length >= 3
+    Participante.where("nome LIKE :q OR cpf LIKE :q", q: "%#{query}%").limit(20)
+    else
+      Participante.none
+    end
+
+    render json: participantes.map { |p| { id: p.id, text: p.nome } }    
+  end
+
+
   def qr_code
    participante = Participante.find(params[:id])
    qrcode = RQRCode::QRCode.new(participante.codigo_qr)

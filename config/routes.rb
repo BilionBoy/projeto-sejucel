@@ -7,14 +7,20 @@ Rails.application.routes.draw do
   resources :modalidades
   resources :eventos
   resources :tipos
-  resources :participantes do
-   member do
-     get :qr_code
-   end
-   collection do
-     get :qr_codes_pdf
-   end
+  resources :acoes
+ resources :participantes do
+  member do
+    get :qr_code
   end
+  collection do
+    get :qr_codes_pdf
+    get :search   
+    end
+  end
+
+  get 'scan_test', to: 'home#scan_test', as: :scan_test
+
+  
  
 
   # Can be used by load balancers and uptime monitors to verify that the app is live.

@@ -26,6 +26,9 @@ pt-BR:
       participante:
         one: "Participante"
         other: "Participantes"
+      acao:
+        one: "Ação"
+        other: "Ações"
     attributes:
       evento:
         descricao: "Descrição"
@@ -39,6 +42,13 @@ pt-BR:
         codigo_qr: "Codigo do QR Code"
         modalidade_id: "Modalidade"
         municipio_id: "Municipio"
+      acao:
+        participante_id: "Participante"
+        tipo_id: "Tipo de Registro"
+        evento_id: "Evento"
+        data: "Data Hoje"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"
 
     errors:
       messages:

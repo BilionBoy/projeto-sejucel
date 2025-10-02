@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_02_140240) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_02_153300) do
+  create_table "acoes", force: :cascade do |t|
+    t.bigint "participante_id"
+    t.bigint "tipo_id"
+    t.bigint "evento_id"
+    t.datetime "data"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["evento_id"], name: "index_acoes_on_evento_id"
+    t.index ["participante_id"], name: "index_acoes_on_participante_id"
+    t.index ["tipo_id"], name: "index_acoes_on_tipo_id"
+  end
+
   create_table "eventos", force: :cascade do |t|
     t.string "descricao"
     t.date "data_inicio"

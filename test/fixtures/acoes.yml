@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participante: one
+  tipo: one
+  evento: one
+  data: 2025-10-02 11:33:00
+
+two:
+  participante: two
+  tipo: two
+  evento: two
+  data: 2025-10-02 11:33:00

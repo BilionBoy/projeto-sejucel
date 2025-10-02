@@ -1,0 +1,37 @@
+<div class="container">
+  <%= render "shared/notice" %>
+  <div class="card border-0 shadow shadow-sm">
+    <div class="card-header border-0 d-flex justify-content-between">
+      <span class="fs-4">Visualizar Acao</span>
+    </div>
+    <div class="card-body">
+      <div id="<%= dom_id @acao %>">
+          <p>
+            <strong>Participante:</strong>
+            <%= @acao.participante %>
+          </p>
+          <p>
+            <strong>Tipo:</strong>
+            <%= @acao.tipo %>
+          </p>
+          <p>
+            <strong>Evento:</strong>
+            <%= @acao.evento %>
+          </p>
+          <p>
+            <strong>Data:</strong>
+            <%= @acao.data %>
+          </p>
+      </div>
+    </div>
+    <div class="card-footer border-0 d-flex justify-content-between">
+      <div>
+        <%= link_to edit_acao_path(@acao), class: "btn btn-primary" do %>
+        <i class="bi bi-pencil-square"></i> Editar
+        <% end %>
+        <%= link_to "Voltar", acoes_path, class: "btn btn-secondary" %>
+      </div>
+      <%= button_to "Deletar", @acao, method: :delete, class: "btn btn-outline-danger border-0" %>
+    </div>
+  </div>
+</div>

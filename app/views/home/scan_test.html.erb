@@ -1,0 +1,81 @@
+<div class="home-container">
+  <h2 class="section-title">Escanear QR Code — Página de Teste</h2>
+
+  <!-- Leitor real (mantido): quando a câmera funcionar, este será usado -->
+  <div id="qr-reader" style="width: 100%; max-width: 400px; margin: 20px auto;"></div>
+  <div id="qr-result" class="qr-result" style="text-align:center; margin-bottom: 1rem;"></div>
+
+  <hr>
+
+  <!-- Fallback / Simulação -->
+  <div style="max-width:700px;margin:20px auto;padding:16px;border:1px solid #e6e6e6;border-radius:8px;">
+    <h3>Simular leitura (fallback)</h3>
+    <p>Selecione um participante e clique em <strong>Simular Scan</strong> — isso redireciona para <code>/acoes/new?cpf=...</code> como o scanner faria.</p>
+
+    <form id="simulate-scan-form" action="#" onsubmit="return simulateScan();">
+      <div style="display:flex;gap:8px;align-items:center;">
+        <select id="simulate-participante" style="flex:1;padding:8px;border:1px solid #ccc;border-radius:4px;">
+          <option value="">-- selecione um participante --</option>
+          <% @participantes.each do |p| %>
+            <option value="<%= p.cpf %>"><%= p.nome.truncate(80) %> — <%= p.cpf %></option>
+          <% end %>
+        </select>
+        <button type="submit" class="modern-btn modern-btn-primary">Simular Scan</button>
+      </div>
+    </form>
+  </div>
+
+  <p style="text-align:center;color:#666;font-size:0.9rem;">
+    Observação: se sua câmera estiver bloqueada, use o fallback acima. O leitor real está carregado abaixo.
+  </p>
+</div>
+
+<!-- html5-qrcode (mantém o leitor real) -->
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script>
+  // comportamento quando o leitor real decodifica um QR
+  function onScanSuccess(decodedText, decodedResult) {
+    // o decodedText é o conteúdo do QR (no nosso fluxo: codigo_qr / UUID).
+    // aqui assumimos que o QR contém o CPF ou o codigo_qr que sua rota /acoes/new espera.
+    // se você está usando codigo_qr (UUID), substitua `cpf` por `codigo_qr` na URL.
+    var valorLido = decodedText.trim();
+
+    // se o QR contém o CPF diretamente:
+    // window.location.href = "/acoes/new?cpf=" + encodeURIComponent(valorLido);
+
+    // se o QR contem o codigo_qr (UUID), envie como codigo_qr:
+    window.location.href = "/acoes/new?codigo_qr=" + encodeURIComponent(valorLido);
+  }
+
+  function onScanError(errorMessage) {
+    // somente loga, não precisa poluir a UI
+    console.debug("QR read error:", errorMessage);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    try {
+      var qrCodeScanner = new Html5QrcodeScanner(
+        "qr-reader",
+        { fps: 10, qrbox: 250 }
+      );
+      qrCodeScanner.render(onScanSuccess, onScanError);
+    } catch (e) {
+      console.warn("Html5QrcodeScanner não pôde iniciar (provável bloqueio da câmera):", e);
+    }
+  });
+
+  // Função chamada pelo form de simulação
+  function simulateScan() {
+    var cpf = document.getElementById("simulate-participante").value;
+    if (!cpf) {
+      alert("Selecione um participante para simular a leitura.");
+      return false;
+    }
+
+    // redireciona para o mesmo endpoint que o leitor real (ajuste conforme sua implementação)
+    // se sua rota acoes#new espera 'cpf', usa ?cpf=...
+    // se espera 'codigo_qr', ajuste para ?codigo_qr=...
+    window.location.href = "/acoes/new?cpf=" + encodeURIComponent(cpf);
+    return false;
+  }
+</script>

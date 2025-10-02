@@ -1,0 +1,94 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{Acao.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item">
+    <%= link_to t("activerecord.models.#{Acao.model_name.i18n_key}.other"), acoes_path, class: "text-dark" %>
+  </span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+
+<%= simple_form_for(@acao) do |f| %>
+  <div class="modern-form-card">
+    <div class="modern-form-header">
+      <h5>
+        <%= @acao.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{Acao.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+
+    <div class="modern-form-body">
+      <% if f.error_notification %>
+        <div class="modern-error-notification">
+          <strong>Atenção!</strong>
+          <%= f.error_notification %>
+        </div>
+      <% end %>
+
+      <% if f.object.errors[:base].present? %>
+        <div class="modern-error-notification">
+          <strong>Erro:</strong>
+          <%= f.object.errors[:base].to_sentence %>
+        </div>
+      <% end %>
+
+      <div class="modern-form-row">
+
+        <!-- Participante com Select2 -->
+        <div class="modern-form-group">
+            <%= f.label :participante_id, "Participante", class: "modern-form-label" %>
+
+  <% if @acao.participante.present? %>
+    <!-- Já veio do QR: mostra fixo -->
+    <input type="text"  class="modern-form-control"  value="<%= @acao.participante.nome %> - <%= @acao.participante.cpf %>"  disabled>
+
+    <%= f.hidden_field :participante_id, value: @acao.participante.id %>
+    <% else %>
+    <!-- Caso contrário, usa o select2 -->
+    <%= f.select :participante_id, [], {},  class: "form-control select2",  id: "participante_id_select", data: { url: search_participantes_path } %>
+    <% end %>
+        </div>
+
+        <div class="modern-form-group">
+          <%= f.input :tipo_id,
+            collection: Tipo.all, 
+            label_method: :descricao, 
+            value_method: :id, 
+            prompt: "Selecione O Tipo de Registro",
+            input_html: { class: "modern-form-control capitalize" },
+            label_html: { class: "modern-form-label" },
+            wrapper_html: { class: "modern-form-group" } %>
+        </div>
+
+
+      
+
+      </div>
+    </div>
+
+    <div class="modern-form-footer">
+      <%= link_to "Cancelar", acoes_path, class: "modern-btn modern-btn-secondary" %>
+      <%= f.button :submit, "Salvar", class: "modern-btn modern-btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $(function() {
+    $('#participante_id_select').select2({
+      placeholder: "Digite no mínimo 3 letras...",
+      minimumInputLength: 3,
+      ajax: {
+        url: $('#participante_id_select').data('url'),
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          return { q: params.term };
+        },
+        processResults: function (data) {
+          return {
+            results: data.map(function(p) {
+              return { id: p.id, text: p.text };
+            })
+          };
+        }
+      }
+    });
+  });
+</script>

@@ -6,4 +6,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'municipio',   'municipios'
   inflect.irregular 'tipo',        'tipos'
   inflect.irregular 'participante', 'participantes'
+  inflect.irregular 'acao', 'acoes'
 end
