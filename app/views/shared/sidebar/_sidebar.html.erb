@@ -180,7 +180,6 @@
     }
   }
 </style>
-
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-xl">
   <div class="sidebar-content">
     <div class="sidebar-section-body mt-3">
@@ -200,6 +199,7 @@
 
     <div class="sidebar-section">
       <ul class="nav nav-sidebar" data-nav-type="accordion" id="sidebar-items">
+        <!-- Home -->
         <li class="nav-item">
           <a href="<%= root_path %>" class="nav-link" id="home-link" data-no-close>
             <i class="ph-house"></i>
@@ -241,6 +241,23 @@
           </a>
         </li>
 
+        <!-- Seção Tipos de Modalidades -->
+        <div class="sidebar-section-header">
+          <h6>Tipos de Modalidades</h6>
+        </div>
+        <li class="nav-item">
+          <a href="<%= tipos_path %>" class="nav-link">
+             <i class="ph-squares-four"></i>
+            <span>Lista de Tipos </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%= new_tipo_path %>" class="nav-link">
+            <i class="ph-plus-circle"></i>
+            <span>Novo Tipo </span>
+          </a>
+        </li>
+
         <!-- Seção Municípios -->
         <div class="sidebar-section-header">
           <h6>Municípios</h6>
@@ -261,6 +278,7 @@
     </div>
   </div>
 </div>
+
 
 
 <script>

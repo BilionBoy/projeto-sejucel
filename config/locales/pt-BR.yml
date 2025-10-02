@@ -20,6 +20,9 @@ pt-BR:
       municipio:
         one: "Municipios"
         other: "Municipios"
+      tipo:
+        one: "Tipo"
+        other: "Tipos"
     attributes:
       evento:
         descricao: "Descrição"

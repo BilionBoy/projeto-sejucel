@@ -16,7 +16,7 @@ gem 'stimulus-rails'
 gem 'jbuilder'
 # Use o adaptador Redis para rodar o Action Cable em produção
 # gem "redis", ">= 4.0.1"
-
+gem 'htmlbeautifier'
 # Use o Kredis para obter tipos de dados de nível superior no Redis [https://github.com/rails/kredis]
 # gem "kredis"
 gem 'tiny_tds'
