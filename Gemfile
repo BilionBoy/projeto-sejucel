@@ -19,6 +19,8 @@ gem 'jbuilder'
 
 # Use o Kredis para obter tipos de dados de nível superior no Redis [https://github.com/rails/kredis]
 # gem "kredis"
+gem 'tiny_tds'
+gem 'activerecord-sqlserver-adapter'
 
 # Use o método has_secure_password do Active Model [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -51,7 +53,7 @@ group :test do
   gem 'selenium-webdriver'
 end
 # Use o banco de dados PostgreSQL
-gem 'pg', '~> 1.1'
+# gem 'pg', '~> 1.1'
 
 # Formulários
 gem 'simple_form'
