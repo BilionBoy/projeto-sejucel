@@ -1,0 +1,24 @@
+<% content_for :title, "QR Codes dos Participantes" %>
+
+<h1 style="text-align: center; margin-bottom: 30px;">QR Codes dos Participantes</h1>
+
+<% @participantes.group_by(&:municipio).each do |municipio, participantes| %>
+  <h2 style="margin-top: 40px;"><%= municipio&.descricao || "Sem município" %></h2>
+
+  <div class="crachas-container">
+    <% participantes.each do |p| %>
+      <div class="cracha">
+        <h2><%= p.nome %></h2>
+        <p><strong>CPF:</strong> <%= p.cpf %></p>
+        <p><strong>Modalidade:</strong> <%= p.modalidade&.descricao %></p>
+
+        <div class="qrcode">
+          <%= raw RQRCode::QRCode.new("/acoes/new?participante_id=#{p.id}")
+                .as_svg(module_size: 4) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="page-break"></div>
+<% end %>
