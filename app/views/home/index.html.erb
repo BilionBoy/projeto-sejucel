@@ -1,5 +1,367 @@
-<div class="container-fluid">
-  <div class="row">
-    <h1>Olá</h1>
+<style>
+  /* Reset e Base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .home-container {
+    padding: 2rem;
+    background: #f5f7fa;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+    border-radius: 16px;
+    padding: 2.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(30, 136, 229, 0.15);
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    opacity: 0.95;
+    font-weight: 400;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #1e88e5 0%, #1565c0 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .stat-card:hover::before {
+    opacity: 1;
+  }
+
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 1;
+  }
+
+  /* Quick Actions */
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .action-btn {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #1f2937;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+  }
+
+  .action-btn:hover {
+    border-color: #1e88e5;
+    background: #f0f9ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.15);
+  }
+
+  .action-btn-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+  }
+
+  .action-btn-text {
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  /* Recent Activity */
+  .activity-section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+  }
+
+  .activity-list {
+    list-style: none;
+  }
+
+  .activity-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.2s ease;
+  }
+
+  .activity-item:last-child {
+    border-bottom: none;
+  }
+
+  .activity-item:hover {
+    background: #f9fafb;
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 8px;
+  }
+
+  .activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f0f9ff;
+    color: #1e88e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+  }
+
+  .activity-content {
+    flex: 1;
+  }
+
+  .activity-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+  }
+
+  .activity-meta {
+    font-size: 0.8125rem;
+    color: #6b7280;
+  }
+
+  .activity-time {
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #9ca3af;
+  }
+
+  .empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+
+  .empty-state-text {
+    font-size: 0.9375rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .home-container {
+      padding: 1rem;
+    }
+
+    .hero-section {
+      padding: 1.75rem;
+    }
+
+    .hero-title {
+      font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .quick-actions {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+<div class="home-container">
+  Stats Grid 
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">👥</div>
+      <div class="stat-label">Participantes</div>
+      <div class="stat-value">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📦</div>
+      <div class="stat-label">Kits Entregues</div>
+      <div class="stat-value">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🍽️</div>
+      <div class="stat-label">Refeições Hoje</div>
+      <div class="stat-value">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📊</div>
+      <div class="stat-label">Ações Totais</div>
+      <div class="stat-value">0</div>
+    </div>
+  </div>
+  Quick Actions 
+  <h2 class="section-title">Ações Rápidas</h2>
+  <div class="quick-actions">
+    <a href="/credenciamento/scan" class="action-btn">
+      <div class="action-btn-icon">📷</div>
+      <span class="action-btn-text">Escanear QR Code</span>
+    </a>
+    <a href="/participantes" class="action-btn">
+      <div class="action-btn-icon">👤</div>
+      <span class="action-btn-text">Participantes</span>
+    </a>
+    <a href="/relatorios" class="action-btn">
+      <div class="action-btn-icon">📈</div>
+      <span class="action-btn-text">Relatórios</span>
+    </a>
+    <a href="/eventos" class="action-btn">
+      <div class="action-btn-icon">📅</div>
+      <span class="action-btn-text">Eventos</span>
+    </a>
+  </div>
+  Recent Activity 
+  <h2 class="section-title">Atividades Recentes</h2>
+  <div class="activity-section">
+    <ul class="activity-list">
+      <li class="activity-item">
+        <div class="activity-icon">📦</div>
+        <div class="activity-content">
+          <div class="activity-title">Kit entregue para João Silva</div>
+          <div class="activity-meta">CPF: 123.456.789-00 • Município: São Paulo</div>
+        </div>
+        <div class="activity-time">há 5 min</div>
+      </li>
+      <li class="activity-item">
+        <div class="activity-icon">🍽️</div>
+        <div class="activity-content">
+          <div class="activity-title">Almoço registrado para Maria Santos</div>
+          <div class="activity-meta">CPF: 987.654.321-00 • Município: Rio de Janeiro</div>
+        </div>
+        <div class="activity-time">há 12 min</div>
+      </li>
+      <li class="activity-item">
+        <div class="activity-icon">📦</div>
+        <div class="activity-content">
+          <div class="activity-title">Kit entregue para Pedro Costa</div>
+          <div class="activity-meta">CPF: 456.789.123-00 • Município: Belo Horizonte</div>
+        </div>
+        <div class="activity-time">há 18 min</div>
+      </li>
+      <li class="activity-item">
+        <div class="activity-icon">🍽️</div>
+        <div class="activity-content">
+          <div class="activity-title">Jantar registrado para Ana Oliveira</div>
+          <div class="activity-meta">CPF: 321.654.987-00 • Município: Curitiba</div>
+        </div>
+        <div class="activity-time">há 25 min</div>
+      </li>
+      <li class="activity-item">
+        <div class="activity-icon">👤</div>
+        <div class="activity-content">
+          <div class="activity-title">Novo participante cadastrado</div>
+          <div class="activity-meta">Carlos Ferreira • Município: Porto Alegre</div>
+        </div>
+        <div class="activity-time">há 32 min</div>
+      </li>
+    </ul>
   </div>
 </div>

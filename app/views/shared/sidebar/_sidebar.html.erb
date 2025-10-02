@@ -199,16 +199,36 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <ul class="nav nav-sidebar" data-nav-type="accordion" id="sidebar-items">
-        <li class="nav-item">
-          <a href="<%= root_path %>" class="nav-link" id="config-link" data-no-close>
-            <i class="ph-house"></i>
-            <span>Home</span>
-          </a>
-        </li>
-      </ul>
+   <div class="sidebar-section">
+  <ul class="nav nav-sidebar" data-nav-type="accordion" id="sidebar-items">
+    <li class="nav-item">
+      <a href="<%= root_path %>" class="nav-link" id="home-link" data-no-close>
+        <i class="ph-house"></i>
+        <span>Home</span>
+      </a>
+    </li>
+
+    <!-- Seção Eventos -->
+    <div class="sidebar-section-header">
+      <h6>Eventos</h6>
     </div>
+
+    <li class="nav-item">
+      <a href="<%= eventos_path %>" class="nav-link">
+        <i class="ph-calendar"></i>
+        <span>Lista de Eventos</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="<%= new_evento_path %>" class="nav-link">
+        <i class="ph-plus-circle"></i>
+        <span>Novo Evento</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
   </div>
 </div>
 
