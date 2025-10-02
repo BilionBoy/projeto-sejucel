@@ -22,6 +22,8 @@ gem 'htmlbeautifier'
 gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
 
+
+
 # Use o método has_secure_password do Active Model [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -80,6 +82,10 @@ gem 'cpf_cnpj'
 # Ler planilhas Excel
 gem 'caxlsx'
 gem 'caxlsx_rails'
+
+# LEITURA PLANILHA
+
+gem 'roo'
 
 # Nested Forms
 gem 'cocoon'
