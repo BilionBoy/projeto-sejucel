@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_02_133757) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_02_140240) do
   create_table "eventos", force: :cascade do |t|
     t.string "descricao"
     t.date "data_inicio"
@@ -40,6 +40,21 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_02_133757) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "participantes", force: :cascade do |t|
+    t.string "nome"
+    t.string "cpf"
+    t.string "codigo_qr"
+    t.bigint "modalidade_id", null: false
+    t.bigint "municipio_id", null: false
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["modalidade_id"], name: "index_participantes_on_modalidade_id"
+    t.index ["municipio_id"], name: "index_participantes_on_municipio_id"
+  end
+
   create_table "tipos", force: :cascade do |t|
     t.string "descricao"
     t.string "created_by"
@@ -48,4 +63,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_02_133757) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "participantes", "modalidades"
+  add_foreign_key "participantes", "municipios"
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  cpf: MyString
+  codigo_qr: MyString
+  modalidade: one
+  municipio: one
+
+two:
+  nome: MyString
+  cpf: MyString
+  codigo_qr: MyString
+  modalidade: two
+  municipio: two

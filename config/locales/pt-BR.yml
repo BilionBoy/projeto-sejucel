@@ -23,6 +23,9 @@ pt-BR:
       tipo:
         one: "Tipo"
         other: "Tipos"
+      participante:
+        one: "Participante"
+        other: "Participantes"
     attributes:
       evento:
         descricao: "Descrição"
@@ -30,6 +33,12 @@ pt-BR:
         descricao: "Descrição"
       municipio:
         descricao: "Descrição"
+      participante:
+        nome: "Nome"
+        cpf: "CPF"
+        codigo_qr: "Codigo do QR Code"
+        modalidade_id: "Modalidade"
+        municipio_id: "Municipio"
 
     errors:
       messages:

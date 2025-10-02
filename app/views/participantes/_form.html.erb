@@ -1,0 +1,52 @@
+
+<%= render "shared/context_nav", title: t("activerecord.models.#{Participante.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{Participante.model_name.i18n_key}.other"), participantes_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@participante) do |f| %>
+  <div class="modern-form-card">
+    <div class="modern-form-header">
+      <h5>
+        <%= @participante.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{Participante.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+
+    <div class="modern-form-body">
+      <% if f.error_notification %>
+        <div class="modern-error-notification">
+          <strong>Atenção!</strong>
+          <%= f.error_notification %>
+        </div>
+      <% end %>
+
+      <% if f.object.errors[:base].present? %>
+        <div class="modern-error-notification">
+          <strong>Erro:</strong>
+          <%= f.object.errors[:base].to_sentence %>
+        </div>
+      <% end %>
+      <div class="modern-form-row">
+        <div class="modern-form-group">
+          <%= f.input :nome, input_html: { class: "modern-form-control capitalize" }, label_html: { class: "modern-form-label" },  placeholder: "Nome", wrapper_html: { class: "modern-form-group" } %>
+        </div>
+        <div class="modern-form-group">
+          <%= f.input :cpf,   input_html: { class: "modern-form-control capitalize" }, label_html: { class: "modern-form-label" }, placeholder: "CPF", wrapper_html: { class: "modern-form-group" } %>
+        </div>
+        <div class="modern-form-group">
+          <%= f.input :codigo_qr,    input_html: { class: "modern-form-control capitalize" },   label_html: { class: "modern-form-label" }, placeholder: "Código QR", wrapper_html: { class: "modern-form-group" } %>
+        </div>
+        <div class="modern-form-group">
+           <%= f.input :modalidade_id,collection: Modalidade.all, label_method: :descricao, value_method: :id,  prompt: "Selecione a Modalidade",  input_html: { class: "modern-form-control" },  label_html: { class: "modern-form-label" }, wrapper_html: { class: "modern-form-group" } %>
+        </div>
+        <div class="modern-form-group">
+          <%= f.input :municipio_id,collection: Municipio.all, label_method: :descricao, value_method: :id,  prompt: "Selecione o Município",  input_html: { class: "modern-form-control" },  label_html: { class: "modern-form-label" }, wrapper_html: { class: "modern-form-group" } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="modern-form-footer">
+      <%= link_to "Cancelar", participantes_path, class: "modern-btn modern-btn-secondary" %>
+      <%= f.button :submit, "Salvar", class: "modern-btn modern-btn-primary" %>
+    </div>
+  </div>
+<% end %>
