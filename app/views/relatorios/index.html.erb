@@ -1,0 +1,83 @@
+<h1 class="mb-5 fw-bold text-center">
+  <i class="ph-chart-bar me-2 text-primary"></i>
+  Relatórios
+</h1>
+<div class="row g-4 justify-content-center">
+  <!-- Card: Todos os QR Codes -->
+  <div class="col-md-4 col-sm-6">
+    <div class="card shadow border-0 h-100 rounded-3 hover-card">
+      <div class="card-body text-center d-flex flex-column justify-content-between">
+        <div>
+          <div class="icon-circle bg-gradient-primary mb-3">
+            <i class="ph-qr-code text-white fs-2"></i>
+          </div>
+          <h5 class="card-title fw-semibold">Lote QR Codes</h5>
+          <p class="card-text text-muted small">
+            Gere um PDF com todos os QR Codes dos participantes organizados por município.
+          </p>
+        </div>
+        <div>
+          <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#modalQrCodes">
+            <i class="ph-file-pdf me-2"></i> Gerar PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Aqui você pode adicionar outros relatórios em novos cards -->
+</div>
+<!-- Modal QR Codes -->
+<div class="modal fade" id="modalQrCodes" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-header bg-primary text-white rounded-top-4">
+        <h5 class="modal-title">
+          <i class="ph-qr-code me-2"></i> Gerar QR Codes
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p class="mb-3">
+          Você deseja gerar um PDF contendo todos os QR Codes dos participantes?
+        </p>
+        <ul class="list-unstyled small text-muted">
+          <li><i class="ph-check-circle text-success me-2"></i>Organizado por município</li>
+          <li><i class="ph-check-circle text-success me-2"></i>Formato otimizado para impressão</li>
+          <li><i class="ph-check-circle text-success me-2"></i>Acesso rápido via QR Code</li>
+        </ul>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <%= link_to participantes_qrcodes_pdfs_path(format: :pdf), class: "btn btn-danger", target: "_blank" do %>
+          <i class="ph-file-pdf me-2"></i> Baixar PDF
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  /* Hover nos cards */
+  .hover-card {
+    transition: all 0.25s ease;
+  }
+  .hover-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  /* Ícone redondo */
+  .icon-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #1e88e5, #42a5f5);
+  }
+</style>

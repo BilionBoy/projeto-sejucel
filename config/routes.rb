@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :modalidades
   resources :eventos
   resources :tipos
-  
+  resources :relatorios, only: [:index]
+
   resources :acoes do
     collection do
       get :relatorios
@@ -21,6 +22,13 @@ Rails.application.routes.draw do
     collection do
       get :qr_codes_pdf
       get :search   
+    end
+  end
+
+  # Relatório/Lote de QRCodes
+  resources :pdfs, only: [] do
+    collection do
+      get :participantes_qrcodes
     end
   end
 

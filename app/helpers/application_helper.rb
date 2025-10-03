@@ -2,7 +2,10 @@ module ApplicationHelper
   include Pagy::Frontend
   
 
-
+  def safe_utf8(str)
+    str.to_s.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
+  end
+  
   def format_cpf(cpf)
     return "" if cpf.blank?
     numbers = cpf.to_s.gsub(/\D/, "") # mantém só números

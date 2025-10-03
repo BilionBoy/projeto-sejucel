@@ -23,7 +23,6 @@ gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
 
 
-
 # Use o método has_secure_password do Active Model [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -39,7 +38,7 @@ gem 'bootsnap', require: false
 group :development, :test do
   # Veja https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
-
+  
   # Análise estática para vulnerabilidades de segurança [https://brakemanscanner.org/]
   gem 'brakeman', require: false
 end
@@ -82,6 +81,7 @@ gem 'cpf_cnpj'
 # Ler planilhas Excel
 gem 'caxlsx'
 gem 'caxlsx_rails'
+gem "csv"
 
 
 # LEITURA PLANILHA
