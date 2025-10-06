@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'home#scan_test'
   get 'home/index'
   
   # Rotas Scaffold

@@ -79,6 +79,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_02_153300) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "acoes", "eventos"
+  add_foreign_key "acoes", "participantes"
+  add_foreign_key "acoes", "tipos"
   add_foreign_key "participantes", "modalidades"
   add_foreign_key "participantes", "municipios"
 end
