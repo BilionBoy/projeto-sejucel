@@ -3,18 +3,19 @@
 class CreateAcoes < ActiveRecord::Migration[7.2]
   def up
     unless table_exists?(:acoes)
-     create_table :acoes do |t|
-       t.references :participante
-       t.references :tipo
-       t.references :evento
-       t.datetime :data
-          
-       t.string :created_by
-       t.string :updated_by
-       t.datetime :deleted_at
-       t.timestamps
+      create_table :acoes do |t|
+        t.references :participante, foreign_key: true
+        t.references :tipo, foreign_key: true
+        t.references :evento, foreign_key: true
+        t.datetime :data
+
+        t.string :created_by
+        t.string :updated_by
+        t.datetime :deleted_at
+
+        t.timestamps
+      end
     end
-   end
   end
 
   def down
