@@ -4,11 +4,12 @@ class Participante < ApplicationRecord
   belongs_to :modalidade
   belongs_to :municipio
 
-  # Validações
-  validates :nome,      presence: true
-  validates :cpf,       presence: true, uniqueness: true
+  validates :nome, presence: true
+  validates :cpf, presence: true, uniqueness: true
 
-  # Scopes organizados
+  # Gera o QR automaticamente se criado manualmente (via CRUD)
+  after_create :gerar_codigo_qr!
+
   scope :completo, -> { includes(:municipio, :modalidade) }
   scope :ordenado, -> { order(:municipio_id, :nome) }
 
@@ -22,5 +23,14 @@ class Participante < ApplicationRecord
 
   def modalidade_nome
     modalidade&.descricao
+  end
+
+  private
+
+  def gerar_codigo_qr!
+    return if codigo_qr.present? # já veio da task
+
+    base_url = Rails.application.routes.default_url_options[:host] || "http://127.0.0.1:3000"
+    update_column(:codigo_qr, "#{base_url}/acoes/new?participante_id=#{id}")
   end
 end

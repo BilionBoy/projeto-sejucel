@@ -36,7 +36,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-/config/database.yml
+# /config/database.yml
 nohup.out
 start.sh
 stop.sh
@@ -44,6 +44,6 @@ stop.sh
 /coverage/
 Gemfile.lock
 .env
-/config/environments/production.rb
+# /config/environments/production.rb
 
 /config/credentials/development.key

@@ -11,6 +11,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   #
   config.enable_reloading = true
+  Rails.application.routes.default_url_options[:host] = 'http://localhost:3000'
+  config.hosts << /[a-z0-9\-]+\.ngrok\-free\.app/
 
   # Do not eager load code on boot.
   config.eager_load = false

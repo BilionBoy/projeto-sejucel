@@ -2,7 +2,7 @@ class PdfsController < ApplicationController
   layout "pdf"
 
   def participantes_qrcodes
-    @participantes = Participante.completo.ordenado
+    @participantes = Participante.completo.ordenado.limit(50)
 
     respond_to do |format|
       format.html

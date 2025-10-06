@@ -10,21 +10,19 @@ namespace :import do
     puts "📂 Importando participantes da planilha..."
 
     sheet = xlsx.sheet(0)
-
     participantes = []
     cpfs_vistos = Set.new
 
     sheet.each_with_index(nome: "Nome", cpf: "CPF", modalidade: "Modalidade", municipio: "Município") do |row, index|
-      next if index == 0 # pula cabeçalho
+      next if index.zero? # pula cabeçalho
 
-      # Força UTF-8 válido
       nome       = row[:nome].to_s.strip.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
       cpf        = row[:cpf].to_s.strip.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
       modalidade = row[:modalidade].to_s.strip.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
       municipio  = row[:municipio].to_s.strip.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
 
       if nome.blank? || cpf.blank?
-        puts "⚠️ Ignorado: linha #{index+1} sem nome ou CPF"
+        puts "⚠️ Ignorado: linha #{index + 1} sem nome ou CPF"
         next
       end
 
@@ -34,12 +32,7 @@ namespace :import do
       end
       cpfs_vistos.add(cpf)
 
-      participantes << {
-        nome: nome,
-        cpf: cpf,
-        modalidade: modalidade,
-        municipio: municipio
-      }
+      participantes << { nome: nome, cpf: cpf, modalidade: modalidade, municipio: municipio }
     end
 
     participantes.sort_by! { |p| p[:nome].downcase }
@@ -54,18 +47,15 @@ namespace :import do
         next
       end
 
-      participante = Participante.new(
-        nome: row[:nome],
-        cpf: row[:cpf]
-      )
-
+      participante = Participante.new(nome: row[:nome], cpf: row[:cpf])
       participante.modalidade = Modalidade.find_or_create_by(descricao: row[:modalidade])
       participante.municipio  = Municipio.find_or_create_by(descricao: row[:municipio])
-
       participante.save!
 
-      # Agora que temos o ID, geramos a URL segura
-      participante.update!(codigo_qr: "/acoes/new?participante_id=#{participante.id}")
+      # Gera a URL completa e segura pro QR Code (usa o host configurado no environment)
+      participante.update!(
+        codigo_qr: "#{Rails.application.routes.url_helpers.root_url}acoes/new?participante_id=#{participante.id}"
+      )
 
       importados += 1
       puts "✅ Importado: #{participante.nome} (#{participante.cpf}) | QR → #{participante.codigo_qr}"
