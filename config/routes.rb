@@ -1,4 +1,14 @@
+
+
+
+
 Rails.application.routes.draw do
+  get "/signin-oidc", to: "sauron_auth#callback"
+  get '/auth/login', to: 'sauron_auth#login'
+  get '/auth/callback', to: 'sauron_auth#callback'
+  get '/auth/logout', to: 'sauron_auth#logout'
+
+
   root 'home#scan_test'
   get 'home/index'
   
@@ -36,4 +46,8 @@ Rails.application.routes.draw do
 
   # Health check
   get 'up' => 'rails/health#show', as: :rails_health_check
+
+
 end
+
+

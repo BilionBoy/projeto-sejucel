@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module ProjetoSejus
+module ProjetoSejucel
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
@@ -16,7 +16,14 @@ module ProjetoSejus
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
     config.paths['lib/templates/erb/scaffold'] = 'lib/templates/erb/scaffold'
+  
 
+      # ✅ Permitir que Rails aceite redirecionamentos externos (ex: SAURON)
+    config.action_dispatch.default_headers.merge!({
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Allow-Methods' => 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers' => 'Origin, Content-Type, Accept, Authorization, Token'
+    })
     config.time_zone = 'La Paz' # Configuração do Time Zone
 
     config.i18n.default_locale = :'pt-BR' # Configuração do idioma padrão

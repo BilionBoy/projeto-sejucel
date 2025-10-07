@@ -53,6 +53,9 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Use o banco de dados PostgreSQL
 # gem 'pg', '~> 1.1'
 
@@ -64,9 +67,15 @@ gem 'htmlbeautifier'
 gem 'rufo'
 
 # Login
-gem 'devise'
+# gem 'devise'
+# OMNI AUTH ID - SAURON
+# gem 'omniauth'
+# gem 'omniauth_openid_connect'
+# gem 'omniauth-rails_csrf_protection'
 
-# Ransack
+gem 'openid_connect', '~> 1.4'
+gem 'rack-session'
+#Ransack
 gem 'ransack'
 
 # Paginação
